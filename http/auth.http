@@ -1,0 +1,178 @@
+# @host = http://127.0.0.1:8000/api/v1
+# @host = http://192.168.31.229:8002/api/v1
+# @host = http://192.168.31.229:8002/api/v1
+@host = https://gifty-api.non-logic.com/api/v1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNjhjNzJlZWJhMWJiNTZkZjBlMWM5ZWYyNTEwOTc2NDVlYTY3YjNmNmViMjcxYWEwMTAwY2Y5YTBjOWFiOWIxMDgzNmEzMjRkOWMxNGFiYmEiLCJpYXQiOjE2NzA3NDg3ODcuNTU3NTc2LCJuYmYiOjE2NzA3NDg3ODcuNTU3NTc3LCJleHAiOjE3MDIyODQ3ODcuNTUzOTA4LCJzdWIiOiIxMDgiLCJzY29wZXMiOltdfQ.l-K_bxLfn-w95Rktwb0Pc7R8KI2GVwYZQuA2hNEGkY2KfeHY2pC7sX7l1mX9To-6VwCkDmOkqjYZUcuWhIKvT28wkHpU-KuXOuWOoFhhLhzsTZFS2MGq0JKCvnjVIZ5lf_qs-Lk_odPQDnHsLmo5xYyuOwkfFk9Ac3ZavlX2VmS_0_wtobIbdCuR0Ji7pqU570sOzVMEinEWzlJiua1HljTI-Tzle4TMEBoElPVEM4Do7IiZ_3kFWcR57qligusFuzCfaWf96JSaeA5AcSji6ofQ1nBtNAMciAIWnfGuKtssJXRFvptWlLYBD-0MoHw4x8c1l07cdYdRqOm2AYRNToGCNBl2aXcThIRnIcIEJlAAL4BP_DbmHMCo2iBp0ntZBjdGULDjfNOZY4d8aqMdRlkt5Q8Pkwn-H3xQ4d_zMws2jRqqqrIOxukWCGFiPl1DmyzJN3_Z5ZVTHP2KZJjzH-V3I_IiUzba8QmNJhAYuoPx0Yj3LWEvBTmbLfFGTucqdKEf2XsrOKF__dyqvBAu9ZYHoRc6ExcePocTvJvkY_PpYy3U0wbq-wJ9z7YBt2iSSYMccaYPDw_ZPiW-hGFCRqQFl5GO3aVwS5ZhJhCS72r4OvOVftfQn5MT8uIlgEDIxiy6PVBH15swnDDQxKtezykf3F0LYPmKoZJalLjDyjg
+
+### ==============================
+###           Auth
+### ==============================
+### Login -> done
+POST {{host}}/common/auth/login HTTP/1.1
+content-type: application/json
+app-role: customer
+
+{
+    "email": "arafat@g.com",
+    "password": "111111"
+}
+
+### Get Auth User
+GET {{host}}/common/auth/user HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+### Registration -> done
+POST {{ host }}/common/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Customer 6",
+    "email": "c6@genieinfo.tech",
+    "password": "password",
+    "password_confirmation": "password",
+    "role": "customer"
+}
+
+### resend OTP -> done
+POST {{ host }}/common/auth/resend-otp HTTP/1.1
+content-type: application/json
+app-role: customer
+
+{
+    "email": "c6@genieinfo.tech",
+    "forget": false
+}
+
+### verify OTP -> done
+POST {{ host }}/common/auth/verify HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "otp": 8003
+}
+
+### Forget Password OTP -> done
+POST {{host}}/common/auth/forget-password HTTP/1.1
+content-type: application/json
+app-role: customer
+
+{
+    "email": "c3@genieinfo.tech",
+    "forget": false
+}
+
+### Forget password OTP verify -> done
+POST {{ host }}/common/auth/forget-password-otp-verify HTTP/1.1
+content-type: application/json
+
+{
+    "email": "c3@genieinfo.tech",
+    "otp": 3924,
+    "forget": true
+}
+
+### reset password -> done
+POST {{ host }}/common/auth/reset-password HTTP/1.1
+content-type: application/json
+
+{
+    "token": 53142593,
+    "email": "c3@genieinfo.tech",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+### Logout -> done
+POST {{host}}/common/auth/logout HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+accept: application/json
+
+
+
+### ==============================
+###            Profile
+### ==============================
+## Update profile 
+POST {{host}}/common/auth/profile/update HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "name": "Ezio Alditore",
+    "email": "gcustomer1@genieinfo.tech",
+    "image": null,
+    "phone": "123",
+    "address": "Dhaka",
+    "post_code": "1234",
+}
+
+### User profile # ! Returns User profile.
+GET {{host}}/common/auth/profile/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+######
+
+### Change Password -> done
+POST {{host}}/common/auth/profile/change-password HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "old_password": "passwo",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+
+### Toggle Settings -> done
+POST {{host}}/common/auth/profile/toggle-settings HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    # "type": "push_notification"
+    "type": "email_notification"
+}
+
+### Change Language -> english 'en', japanize 'jp' -> done
+POST {{host}}/common/auth/profile/change-language HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "code": "en" 
+}
+
+
+### delete profile
+POST {{host}}/common/auth/profile/delete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+
+### Get Refer Url
+GET {{host}}/common/auth/profile/get-refer-code HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+
+
+### Test
+GET http://192.168.31.229:8002/api/v1/admin/test HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}} 
+### Test
+GET http://192.168.31.229:8002/api/v1/customer/test HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}} 
+### Test
+GET http://192.168.31.229:8002/api/v1/shop/test HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}} 

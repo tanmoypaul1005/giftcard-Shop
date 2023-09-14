@@ -1,0 +1,462 @@
+# @host = http://127.0.0.1:8000/api/v1
+# @host = http://192.168.31.235:8000/api/v1
+# @host = http://post-card-api.atiar.info/api/v1
+@host = https://gifty-api.non-logic.com/api/v1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjEyZWU5ZWMwMjM3NDYwZWFkN2IzODIzMGMyYjRiMWY1NzQyNTdmMzdkY2U1YmU2M2RiNTE2MzBkMDkzZGQ0YWYwOTAwMGFkZDUzNjQ4NDMiLCJpYXQiOjE2NzE0NDc0NDEuNTE5Mzg2LCJuYmYiOjE2NzE0NDc0NDEuNTE5Mzg2LCJleHAiOjE3MDI5ODM0NDEuNTE1Mzg5LCJzdWIiOiIxMCIsInNjb3BlcyI6W119.pi1HR8Zkka2g87Cu5mYkqkmB1OIDzwRYrH-Ua7ZYDNbnXGedHvnKDA30HcW0xsMdVA7U2tlyY8xoCGIAw0QXCEJ2ZRnI5cQTUlHAIlWmwGER5212PENuJs2ed5TdIVWXYRcc_rlVOP3TkAAjX-Mv6LquiSZA8Z19cWyyF2j-HVVJnRK4vghYRrPjN46BoWq2NCmXTIT0YcJpbjkuOQheEI7ZyL_9gz4OJw2-LPQ6QOrZxdgiVdtQAPlNICADTFSVsv9nb7lQPSp6OplmgmtnXx4tnrD3zPBGuYlEP7fMnW04VlpJ5ivwue9aLIhn_7detYCiqXGXsg1_c0Cpng6dBf67RlREyXa1amByDma1u3FNHoiZO_xzDxW46Nmbzvu-Zvc8brrPjVJaNZHUOA9XY-g3ds2HOENqbsw5vBe93sN7SaXmK5XT4blEkAx6GBEjjZYnZfCmKJhQnzE-fGbMdw_DOS4ZWxTldLZ81FBixpBqrB5TdvRUllTzncDubMEazeMtXWbfIUiI0blW4-nArFjThmYyTAWr_wgMVePIAadptxT38OxTfMghLt5CmPnqkP-1M_VyT1rlDyZcfdz5UuNLsvpt_QYXj4JEYMwb4KP-C8hGrMt45ooUjHErD8mal_WK96OkJs2EfFJxtUqqUeEoi1M5QKpouNsu-UONbac
+@proifle_img = "data:image/png;base64,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"
+@app-role = customer
+### ==============================
+###             Auth
+### ==============================
+### Login
+POST {{host}}/common/auth/login HTTP/1.1
+content-type: application/json
+app-role: customer
+
+{
+    "email": "arafat@g.com",
+    "password": "111111"
+}
+
+
+### ==============================
+###          Home
+### ==============================
+### Home
+GET {{host}}/common/home HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+app-type: app
+
+
+### ==============================
+###          Shops
+### ==============================
+### Post Card Index # ! Returns Post Card List.
+GET {{host}}/common/shop/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "take": 10,
+    "category_id" : 1
+}
+
+### User profile # ! Returns User profile.
+GET {{host}}/common/auth/profile/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+######
+
+####[if "next_page_url" is empty then this the last page. per page you will get 20 data]
+GET {{host}}/common/post-card/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{app-role}}
+
+{
+    # "search": "Mubarak",
+    # "categories": [4]
+    # "min_price": 250
+    # "max_price": 500
+}
+
+#####
+### Show
+GET  {{host}}/common/post-card/show HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "id": 3
+}
+
+### ==============================
+###          Orders
+### ==============================
+### Order Index
+GET {{host}}/customer/order/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "search": "",
+    "categories": []
+}
+
+### Order Add
+POST {{host}}/customer/order/add HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "card_id": 3,
+
+    "text": "NA",
+    "text_image": "test.com/text.png",
+    "message": "Lorem Impsum text",
+    "quantity": 4,
+
+    "authority_fee": 100,
+    "shipping_fee": 100,
+    "discount": 1000,
+
+    "bill_name": "Red",
+    "bill_phone": "937289342",
+    "bill_postcode": "1298",
+    "bill_city": "Dhaka",
+    "bill_address": "Mirpur-14, Dhaka",
+    "bill_address_type": "others",
+
+
+    "ship_name": "Green",
+    "ship_phone": "283748234",
+    "ship_postcode": "3765",
+    "ship_city": "Dhanmondi",
+    "ship_address": "Dhanmondi, Dhaka",
+    "ship_address_type": "others",
+
+    "delivery_date": "02-07-2022",
+    "delivery_time": "10.30",
+
+    "payment_method": "cod"
+    # "expiry": "02-05-2022",
+
+    # "discount_code": "globaA"
+}
+
+### Add Order Feedback
+POST {{host}}/customer/order/feedback/add HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "order_id": 18,
+    "rate": 3.5,
+    "review": "good"
+}
+
+# //! Depeicated
+# ### Order History Index 
+# GET {{host}}/customer/order/history/index HTTP/1.1
+# content-type: application/json
+# Authorization: Bearer {{token}}
+# app-role: customer
+
+### Order History Show
+POST {{host}}/customer/order/history/show HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+ {
+     "id": 18
+ }
+### Order History Index/filter
+POST {{host}}/customer/order/history/filter HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+ {
+    #  "status": "canceled",
+    # "min_date": "08-06-2022",
+    # "max_date": "10-06-2022"
+    
+ }
+
+
+### ==============================
+###          Contacts
+### ==============================
+### Index
+GET {{host}}/contacts/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+
+### Add Contact
+POST {{host}}/contacts/add HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "name": "Vinsmoke Sanji",
+    "email": "sanji@g.com",
+    "phone": "4579654",
+    "postcode": "468785",
+    "address": "Baratie Restaurant, East Blue"
+}
+
+### Update Contact
+POST {{host}}/contacts/update HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "id": 3,
+    "name": "Vinsmoke Sanji.",
+    "email": "cheff@g.com",
+    "phone": "999999999",
+    "postcode": "12545",
+    "address": "Baratie Restaurant, Sea"
+}
+
+
+### Delete Contact
+POST {{host}}/contacts/delete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "id": 4
+}
+
+
+### ==============================
+###          Contact Us
+### ==============================
+### Contact us add
+POST {{host}}/common/contact-us/add HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Random Name",
+    "email": "email@random.com",
+    "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet elit"
+}
+
+
+### ==============================
+###          Favortie Card
+### ==============================
+#index
+
+GET  {{host}}/customer/favorite-cards/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+
+}
+#####
+# toggle favorite card
+POST  {{host}}/customer/favorite-cards/toggle HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+    "id": 3
+}
+
+### ==============================
+###          Address Books
+### ==============================
+#index
+
+GET  {{host}}/customer/address-books/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+
+}
+
+#######
+#add
+
+POST   {{host}}/customer/address-books/add HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+    "name": "Genie InfoTecha",
+    "phone": "65464313",
+    "post_code": "1217",
+    "address": "20/4, Pallabi",
+    "city": "Dhaka",
+    "type": "home"
+}
+
+####
+
+#update
+POST   {{host}}/customer/address-books/update HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+    "id": 2,
+    "name": "Genie InfoTech",
+    "phone": "65464313",
+    "post_code": "1217",
+    "address": "20/4, Pallabi",
+    "type": "home"
+}
+
+#######
+#update
+POST   {{host}}/customer/address-books/delete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: {{{{app-role}}}}
+
+{
+    "id": 2
+}
+
+#######
+
+### ==============================
+###            Profile
+### ==============================
+### Get Profile
+GET {{host}}/common/auth/profile/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+### Update Profile
+POST {{host}}/common/auth/profile/update HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "image_url": {{proifle_img}},
+    "name": "Genie Snow",
+    "email": "gcustomer1@genieinfo.tech",
+    "phone": "+123 4567890",
+    "address": "Mirpur 12",
+    "city": "dhaka",
+    "post_code": "1216"
+    
+}
+
+### Change Password
+POST {{host}}/common/auth/profile/change-password HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "old_password": "password",
+    "password": "password",
+    "password_confirmation": "password"
+}
+
+
+### Toggle Settings
+POST {{host}}/common/auth/profile/toggle-settings HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    # "type": "push_notification"
+    "type": "email_notification"
+}
+
+### Change Language
+POST {{host}}/common/auth/profile/change-language HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "code": "en"
+}
+
+
+### Change Delete
+POST {{host}}/common/auth/profile/delete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+
+### Get Refer Url
+GET {{host}}/common/auth/profile/get-refer-code HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+### Get profile view
+GET {{host}}/common/auth/profile/get-delete-view HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+
+### [Notification List]
+
+GET {{host}}/common/notification/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+### Set Device token# Set Player id for login APP
+POST {{host}}/common/set-device-token HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user_id": 2,
+    "device_token": "dNOgWt8QRCSkjM1E7JyS_m:APA91bHuF80HSv1HvxpicxhbZNj9mSgOEWch_6q5xYmeSl-Hn3NcsRX0XTrBm94uOSiUKrcRLRDbcPsfb9Nj-jBW-n2zbYPAAeiGX95gEQxtCqUxhNJQQbFglXgjf3LC1nUjjXPNvQFA"
+}
+#########
+
+#new notification set
+POST {{host}}/common/new-notification
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "to_id" : 2,
+    "from_id" : 3,
+    "type" : "system",
+    "title_key" : "order_place",
+    "description_key" : "order_place_description"
+}
+
+#####
+
+#get notification set
+POST  {{host}}/common/notification/show
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "id": 10
+}
+##########
+#mark al read
+POST  {{host}}/common/notification/mark-all-read
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "ids": [4,5,6]
+}
+
+
+### [General Info]
+### type[about-us, terms-and-conditions, privacy-policy,]
+GET {{host}}/common/general-info HTTP/1.1
+content-type: application/json
+
+{
+    "type": "terms-and-conditions"
+}

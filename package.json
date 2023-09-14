@@ -1,0 +1,48 @@
+{
+  "name": "post-card-printing",
+  "homepage": "https://gifty-api.non-logic.com/",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "p_build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@headlessui/react": "^1.6.1",
+    "@mui/material": "^5.8.7",
+    "@react-oauth/google": "^0.5.1",
+    "@stripe/react-stripe-js": "^1.15.0",
+    "@stripe/stripe-js": "^1.45.0",
+    "antd": "^5.0.6",
+    "axios": "^0.27.2",
+    "i18next": "^21.8.5",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.1",
+    "moment": "^2.29.4",
+    "next": "12.1.5",
+    "pm2": "^5.2.2",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "react-i18next": "^11.16.9",
+    "react-icons": "^4.7.1",
+    "react-loader-spinner": "^5.3.4",
+    "react-share": "^4.4.1",
+    "react-sparkle": "^2.0.0",
+    "react-toastify": "^9.0.5",
+    "swiper": "^8.1.1",
+    "zustand": "^4.0.0-rc.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.4",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5",
+    "postcss": "^8.4.12",
+    "tailwindcss": "^3.0.24"
+  }
+}

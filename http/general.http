@@ -1,0 +1,154 @@
+@host = http://post-card-api.atiar.info/api/v1
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGQyZDliMGJkOGY1YjFhMzA1MjczZjI0YTgxY2I5YzYxMzA1ZTM2NzczMDNjMGQ2MGZiMDA5NTM2MjQ0YjUyYWQ0OWQ0NzgyZWU3ZjkzMjAiLCJpYXQiOjE2NTQ1ODI3ODEuMTc0Mjg0LCJuYmYiOjE2NTQ1ODI3ODEuMTc0Mjg3LCJleHAiOjE2ODYxMTg3ODEuMTY0MTk1LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.E5qEqRdWCS99mKkWKJ8DfhnOhFjL0wjA9cvuph1WaURrkSAOLTrkxV3Enwjgqx78nQz3vPMNLiYebAgBl_l-_LCBGx8rs0oAKNlorH91qcuKdEx8l8Fa927yKxw62ePoeZYtrw-MXIiLsEph6r0a_QQpj6Mr_WUYb6Bv31VJkEHebUC2dwDF9iBrYmmt4kp0V9QuLhrRXyqViGx3lxOax3LCdvRFWmnZwXLm8GMOGUt7EMUhtU5ee3EWeHAfvOAiOYi5_2QFHWbEAmKe44IgKkftY8ChFNr0847ZEDYtTe2STsj3cIU1a06y6Cde1DylatLVdCezw79aVO68XCP7w7jXQC_6Up9ruLu-zPyAxXxXJN-rLf3mVtqujWG7cTx6uVUPxKt7Pu_KTAHxk0t8kG2uGW0Nie_l9KCkJGrKpqqaDfRm3-m5uW3V0UU2cB5v4nnJNH0SUwI9eLtTv3khxBqOjfsDbewjJfQpSTYEs_mj8CIcNQbOXgIzX8E9oovAu07kHNb5XjVi1iTyNK1E6YPtr1XHYeWv7zcOXF7Hi1BgHqVAAevNgvdiBEYxdBdSy-SgBfpo0iLQu8dbUhnhgEiqBGlH7XFam9S9t231nrq7gAA1KQuCU43KD8zhgcWh63kNLaLeN5QTPKO7KeNl0VJ5YA4jJ4cV0uHLjaZUsQk
+
+### Test
+GET {{host}}/common/test HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}} 
+### Set Device token# Set Player id for login APP
+POST {{host}}/common/set-device-token HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user_id": 2,
+    "device_token": "dNOgWt8QRCSkjM1E7JyS_m:APA91bHuF80HSv1HvxpicxhbZNj9mSgOEWch_6q5xYmeSl-Hn3NcsRX0XTrBm94uOSiUKrcRLRDbcPsfb9Nj-jBW-n2zbYPAAeiGX95gEQxtCqUxhNJQQbFglXgjf3LC1nUjjXPNvQFA"
+}
+
+
+### ==============================
+###          genereal
+### ==============================
+### Index
+GET {{host}}/common/get-category HTTP/1.1
+content-type: application/json
+### Index
+GET {{host}}/common/get-recommended-category HTTP/1.1
+content-type: application/json
+
+### ==============================
+###          Home
+### ==============================
+### Home
+GET {{host}}/common/home HTTP/1.1
+content-type: application/json
+app_type: app 
+
+###########
+
+### ==============================
+###          Post Card
+### ==============================
+### Index
+### [post card index and filter both used the same API,]
+####[for filtering use those parameter, ]
+####[for category filter send an array with category id, ]
+####[and if you need all the list dont'send any perameter, ]
+####[Here we use pagination for going next page. ]
+####[you will find next page url in the response as "next_page_url". ]
+####[if "next_page_url" is empty then this the last page. per page you will get 20 data]
+GET {{host}}/common/post-card/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    # "search": "Mubarak",
+    # "categories": [1,2],
+    # "min_price": 250
+    # "max_price": 500
+}
+
+#####
+GET {{host}}/common/post-card/get-recommended-cards HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "search": "Mubarak"
+    # "min_price": 250
+    # "max_price": 500
+}
+
+#####
+#####
+POST {{host}}/common/post-card/get-popular-cards HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "type": "popular_cars",
+    "search": "Mubarak"
+    # "min_price": 250
+    # "max_price": 500
+}
+
+#####
+#####
+GET {{host}}/common/post-card/get-new-cards HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "type": "new_cars",
+    "search": "Mubarak"
+    # "min_price": 250
+    # "max_price": 500
+}
+
+#####
+
+### Show
+GET  {{host}}/common/post-card/show HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: shop
+
+{
+    "id": 4
+}
+
+########
+### Shop list # ! Returns Shop List.
+GET {{host}}/common/shop/index HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+############
+
+### Shop Post Card Index # ! Returns Shop Post Card List.
+
+### [shop post card index and filter both used the same API,]
+####[for filtering use those parameter, ]
+####[for category filter send an array with category id, ]
+####[and if you need all the list dont'send any perameter, ]
+####[Here we use pagination for going next page. ]
+####[you will find next page url in the response as "next_page_url". ]
+####[if "next_page_url" is empty then this the last page. per page you will get 20 data]
+GET {{host}}/common/shop/get-cards HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    # "search": "Mubarak",
+    # "categories": [1,2],
+    # "min_price": 150,
+    # "max_price": 500
+    "shop_id": 3
+}
+####[check voucher]
+POST {{host}}/common/check-voucher HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+app-role: customer
+
+{
+    "voucher_code": "shop",
+    # "shop_id": 3,
+    # "user_id": 3
+}

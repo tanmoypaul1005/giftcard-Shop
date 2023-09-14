@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------------- */
+/*                              Scrollbar Style                              */
+/* ------------------------------------------------------------------------- */
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px #1313134d;
+    background-color: #F5F5F5;
+    border: none;
+    border-radius: 100px;
+    display: none;
+}
+::-webkit-scrollbar
+{
+    width: 3px;
+    height: 3px;
+    background-color: #F5F5F5;
+    border: none;
+    border-radius: 100px;
+    display: none;
+}
+::-webkit-scrollbar-thumb
+{
+    background-color: #a5a5a5;
+    border: none;
+    border-radius: 5px;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/*                                Common Style                               */
+/* ------------------------------------------------------------------------- */
+.absolute-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+}
+.absolute-top {
+    @apply absolute top-0 left-1/2 transform  -translate-x-1/2
+}
+.absolute-start {
+    @apply absolute top-1/2 left-0 transform -translate-y-1/2
+}
+.absolute-end {
+    @apply absolute top-1/2 right-0 transform -translate-y-1/2
+}
+.absolute-right-top {
+    @apply absolute top-0 right-0
+}
+.absolute-left-top {
+    @apply absolute top-0 left-0
+}
+.custom-container {
+    @apply mx-2 sm:mx-4 md:mx-8 lg:mx-10 xl:mx-28
+}
+.center {
+    @apply grid place-items-center
+}
+.x-center {
+    @apply flex justify-center items-center
+}
+.y-center {
+    @apply flex flex-col justify-center items-center
+}
+.cp {
+    @apply cursor-pointer
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=================================================================================================== */
+/*                                           Table Corner Radius                                      */
+/*=================================================================================================== */
+/* ! Add this class to the main table "table-corner-rounded" */
+table.table-corner-rounded {
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 350px;
+}
+table.table-corner-rounded tr th:first-child,
+table.table-corner-rounded tr td:first-child {
+    border-left: 1px solid #a9a9a921;
+}
+table.table-corner-rounded tr th {
+    border-top: 1px solid #a9a9a921;
+}
+table.table-corner-rounded tr td {
+    background: #fff;
+}
+/* top-left border-radius */
+table.table-corner-rounded tr:first-child th:first-child {
+    border-top-left-radius: 6px;
+}
+/* top-right border-radius */
+table.table-corner-rounded tr:first-child th:last-child {
+    border-top-right-radius: 6px;
+}
+/* bottom-left border-radius */
+table.table-corner-rounded tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+}
+/* bottom-right border-radius */
+table.table-corner-rounded tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+}
+table.table-corner-rounded.all-cell-border tr th,
+table.table-corner-rounded.all-cell-border tr td {
+    border-right: 1px solid #a9a9a921;
+    border-bottom: 1px solid #a9a9a921;
+}
+table.table-corner-rounded tr th:last-child,
+table.table-corner-rounded tr td:last-child {
+    border-right: 1px solid #a9a9a921;
+}
+table.table-corner-rounded tr th,
+table.table-corner-rounded tr td {
+    border-bottom: 1px solid #a9a9a921;
+}
+
+
+
+
+
+
+/*=================================================================================================== */
+/*                                                   TRASH                                            */
+/*=================================================================================================== */
+.angle-button {
+    /* border-top: 100px solid #764BA2;
+    border-right: 50px solid transparent;
+    height: 50px;
+    width: 100px;
+    
+    padding:1em 5em 1em;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
+
+    clip-path: polygon(0 0, 94% 15%, 100% 100%, 0% 100%);
+    background-color: #764BA2;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    border-radius: 6px;
+}
+/* .angle-button:after{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background-color:#E70101;
+    z-index:-1;    
+    border-top-right-radius: 15px;
+      
+    -ms-transform: skewX(10deg);
+    -webkit-transform: skewX(10deg);
+    transform: skewX(10deg);
+    
+   -ms-transform-origin:100% 100%;
+    -webkit-transform-origin:100% 100%;
+    transform-origin:100% 100%;
+} */
+
+
+.triangle {
+    display: inline-block;
+    width: 150px;
+    color:orange;
+    filter: url('#weird-shape');
+}
+  
+.triangle::before {
+    content: "";
+    display: block;
+    padding-top: 86%;
+    background: currentColor;
+    /* clip-path: polygon(50% 0, 100% 100%, 0 100%); */
+    clip-path: polygon(0 0, 94% 15%, 100% 100%, 0% 100%);
+
+    background-color: #764BA2;
+    padding: 1.6rem 1rem;
+    color: white;
+}
